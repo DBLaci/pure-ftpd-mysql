@@ -4,6 +4,8 @@ MAINTAINER Thierry Corbin <thierry.corbin@kauden.fr>
 
 ENV DEBIAN_FRONTEND noninteractive
 
+ENV EXTERNALIP 127.0.0.1
+
 RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get -y --force-yes install dpkg-dev debhelper && \
@@ -25,6 +27,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
-EXPOSE 21/tcp
+EXPOSE 20 21 30000-30009
 
-CMD /usr/sbin/pure-ftpd-mysql -l mysql:/etc/pure-ftpd/db/mysql.conf -A -j -8 UTF-8 -u 33 -E -Y 2
+CMD /usr/sbin/pure-ftpd-mysql -l mysql:/etc/pure-ftpd/db/mysql.conf -A -j -8 UTF-8 -u 33 -E -Y 2 -p 30000:30009 -P $EXTERNALIP
