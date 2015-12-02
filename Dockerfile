@@ -7,7 +7,6 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV EXTERNALIP 127.0.0.1
 
 RUN apt-get update && \
-    apt-get -y upgrade && \
     apt-get -y --force-yes install dpkg-dev debhelper && \
     apt-get -y build-dep pure-ftpd-mysql && \
     mkdir /ftpdata && \
