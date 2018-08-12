@@ -2,16 +2,23 @@
 
 Pure-ftpd-mysql with TLS and Passive mode
 
-## Usage
+## Environment variables
+
+MYSQL_HOST
+MYSQL_PORT (default 3306)
+MYSQL_USER
+MYSQL_PASSWORD
+TLS (default 0, see: https://github.com/jedisct1/pure-ftpd/blob/master/README.TLS )
+EXTERNALIP
+
+## Usage example
+
+Run mysql docker or use existing and load the sql into it.
+
 
 ```bash
-docker run --name=pure-ftpd-mysql \
-  -v my_cert.pem:/etc/ssl/private/pure-ftpd.pem \
-  -v my_mysql.conf:/etc/pure-ftpd/db/mysql.conf \
-  -v my_data:/ftpdata \
-  --link mysql:mysql \
-  -e EXTERNALIP=your_ip_for_passive_mode \
-  -p 0.0.0.0:20-21:20-21 \
-  -p 0.0.0.0:30000-30009:30000-30009 \
-  -d kauden/pure-ftpd-mysql
+docker run -p 20-21:20-21 -p 30000-30019:30000-30019 \
+  -e MYSQL_HOST=172.18.0.1 -e MYSQL_USER=root -e MYSQL_PASSWORD=secret -e MYSQL_DATABASE=pureftpd \
+  -e EXTERNALIP=172.18.0.1 \
+  -d dblaci/pure-ftpd-mysql
 ```

@@ -1,6 +1,6 @@
-FROM ubuntu:14.04
+FROM ubuntu:18.04
 
-MAINTAINER Thierry Corbin <thierry.corbin@kauden.fr>
+MAINTAINER László Szalma <dblaci@dblaci.hu>
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -26,6 +26,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
-EXPOSE 20 21 30000-30009
+EXPOSE 20 21 30000-30019
 
-CMD /usr/sbin/pure-ftpd-mysql -l mysql:/etc/pure-ftpd/db/mysql.conf -A -j -8 UTF-8 -u 33 -E -Y 2 -p 30000:30009 -P $EXTERNALIP
+ADD /run.sh /
+
+CMD /run.sh
