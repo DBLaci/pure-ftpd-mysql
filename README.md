@@ -15,7 +15,6 @@ EXTERNALIP
 
 Run mysql docker or use existing and load the sql into it.
 
-
 ```bash
 docker run -p 20-21:20-21 -p 30000-30019:30000-30019 \
   -e MYSQL_HOST=172.18.0.1 -e MYSQL_USER=root -e MYSQL_PASSWORD=secret -e MYSQL_DATABASE=pureftpd \
