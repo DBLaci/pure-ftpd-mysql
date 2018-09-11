@@ -36,4 +36,4 @@ chmod 600 /etc/ssl/private/pure-ftpd.pem
 #tail -f > /dev/null
 #service pure-ftpd-mysql start && tail -f /var/log/*.log
 
-/usr/sbin/pure-ftpd-mysql -l mysql:/etc/pure-ftpd/db/mysql.conf -A -j -8 UTF-8 -u 33 -E -p 30000:30019 -d -P $EXTERNALIP
+/usr/sbin/pure-ftpd-mysql-virtualchroot -l mysql:/etc/pure-ftpd/db/mysql.conf -A -j -8 UTF-8 -u 33 -E -p 30000:30019 -d -P $EXTERNALIP
