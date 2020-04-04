@@ -6,8 +6,10 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ENV EXTERNALIP 127.0.0.1
 
-RUN apt-get update && \
-    apt-get -y --force-yes install dpkg-dev debhelper && \
+# https://askubuntu.com/questions/496549/error-you-must-put-some-source-uris-in-your-sources-list
+RUN sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get -y --allow-unauthenticated install dpkg-dev debhelper && \
     apt-get -y build-dep pure-ftpd-mysql && \
     mkdir /ftpdata && \
     mkdir /tmp/pure-ftpd-mysql && \
