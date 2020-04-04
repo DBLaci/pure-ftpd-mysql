@@ -27,6 +27,8 @@ echo "yes" > /etc/pure-ftpd/conf/BrokenClientsCompatibility
 # If you want to allow FTP and TLS sessions, run
 echo "$TLS-0" > /etc/pure-ftpd/conf/TLS
 echo 10 > /etc/pure-ftpd/conf/MaxIdleTime
+echo 200 > /etc/pure-ftpd/conf/MaxClientsNumber
+echo 10 > /etc/pure-ftpd/conf/MaxClientsPerIP
 
 openssl req -x509 -nodes -days 7300 -newkey rsa:2048 -keyout /etc/ssl/private/pure-ftpd.pem -out /etc/ssl/private/pure-ftpd.pem -subj "/C=${SUBJ_C-HU}/ST=Csongrad/L=${SUBJ_L-City}/O=${SUBJ_O-Organization}/OU=infra/CN=${SUBJ_CN-pureftp}"
 #openssl req -x509 -nodes -days 7300 -newkey rsa:2048 -keyout /etc/ssl/private/pure-ftpd.pem -out /etc/ssl/private/pure-ftpd.pem
